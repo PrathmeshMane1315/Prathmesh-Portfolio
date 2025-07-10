@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>Prathmesh Mane | Portfolio</title>
+
+  <!-- Bootstrap -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    html {
+      scroll-padding-top: 80px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0f172a;
+      color: #f1f5f9;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    #background-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      object-fit: cover;
+      opacity: 0.35;
+    }
+
+    .video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      z-index: -1;
+    }
+
+    .glass-nav {
+      background: rgba(30, 41, 59, 0.5);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .gradient-text {
+      background: linear-gradient(to right, #facc15, #16f916);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .nav-link {
+      position: relative;
+      color: #f1f5f9 !important;
+      margin-left: 15px;
+      margin-right: 15px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .animated-link::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(to right, #facc15, #16f916);
+      transition: width 0.3s ease-in-out;
+    }
+
+    .animated-link:hover::after {
+      width: 100%;
+    }
+
+    .animated-link:hover {
+      color: #facc15 !important;
+    }
+
+    header {
+      background: linear-gradient(to right, #c10ee9, #38cbf8);
+      color: #fff;
+      padding: 60px 0;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      border: 4px solid transparent;
+      border-image: linear-gradient(to right, #e879f9, #38bdf8);
+      border-image-slice: 1;
+      animation: glowBorder 3s infinite alternate;
+    }
+
+    @keyframes glowBorder {
+      0% { border-image: linear-gradient(to right, #e879f9, #38bdf8); }
+      100% { border-image: linear-gradient(to right, #38bdf8, #e879f9); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    @keyframes jump {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .cta-button {
+      padding: 12px 25px;
+      background: linear-gradient(135deg, #facc15, #16f916);
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      animation: pulse 2s infinite ease-in-out, jump 2s infinite ease-in-out;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #facc15, 0 0 30px #16f916;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      color: #d2a95d;
+      text-shadow: 0 0 8px #d2a95d;
+      margin-top: 50px;
+    }
+
+    .skill-card, .project-card, .education-card {
+      background: #1e293b;
+      color: #f8fafc;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .skill-card:hover, .project-card:hover, .education-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 20px rgba(255,255,255,0.2), 0 12px 24px rgba(0,0,0,0.4);
+    }
+
+    img.rounded-circle {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      object-fit: cover;
+      border-radius: 0;
+      border: 4px solid transparent;
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.1), 0 0 20px rgba(56,189,248,0.5);
+      transition: box-shadow 0.4s ease;
+    }
+
+    img.rounded-circle:hover {
+      box-shadow: 0 0 0 4px #38f84e, 0 0 25px #f83838;
+    }
+
+    .social-icons {
+      text-align: center;
+      margin-top: 30px;
+      opacity: 0;
+      animation: fadeInUp 1.5s ease-in-out forwards;
+    }
+
+    @keyframes fadeInUp {
+      0% { transform: translateY(30px); opacity: 0; }
+      100% { transform: translateY(0px); opacity: 1; }
+    }
+
+    .social-icons a {
+      color: #38bdf8;
+      margin: 0 10px;
+      font-size: 2rem;
+      display: inline-block;
+      transition: transform 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+    }
+
+    .social-icons a:hover {
+      transform: translateY(-6px) scale(1.15);
+    }
+
+    .social-icons a[title="GitHub"]:hover { color: #b0b0b0; box-shadow: 0 0 12px #b0b0b0; }
+    .social-icons a[title="LinkedIn"]:hover { color: #0a66c2; box-shadow: 0 0 12px #0a66c2; }
+    .social-icons a[title="Instagram"]:hover {
+      background: linear-gradient(45deg, #feda75, #d62976, #962fbf);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      box-shadow: 0 0 12px #d62976;
+    }
+    .social-icons a[title="Facebook"]:hover { color: #1877f2; box-shadow: 0 0 12px #1877f2; }
+    .social-icons a[title="Email"]:hover { color: #ff5555; box-shadow: 0 0 12px #ff5555; }
+
+    footer {
+      background: #1e293b;
+      padding: 20px;
+      color: #94a3b8;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="background-video">
+    <source src="background.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="video-overlay"></div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark glass-nav">
+    <div class="container">
+      <a class="navbar-brand gradient-text" href="#">Prathmesh Mane</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link animated-link" href="#">Home</a></li>
+           <li class="nav-item"><a class="nav-link animated-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link animated-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link animated-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link animated-link" href="#education">Education</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-8 text-left">
+          <h2>Prathmesh Subhash Mane</h2>
+          <p>MCA Graduate | Frontend Developer</p>
+          <p>📍 Sangli, Maharashtra | ✉️ prathmeshmane1513@gmail.com</p>
+          <p>💻 Front-End Developer | 🌐 HTML, CSS, JavaScript Expert | 🛠️ PHP & MySQL Backend | <br> 🎨 Adobe Photoshop | Responsive Web Design | UI/UX Enthusiast | Linux User👨‍💻</p>
+          <button class="cta-button" onclick="window.location.href='Simple Resume.pdf'">Download CV</button>
+        </div>
+        <div class="col-md-4 text-center">
+          <img src="ID.jpg" alt="Prathmesh Mane" class="rounded-circle mb-3" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+    <!-- ✅ New About Section -->
+  <section class="container" id="about">
+    <h2 class="section-title">🙋‍♂️ About Me</h2>
+    <div class="project-card">
+      <p>👋 I'm a Front-End Web Developer skilled in HTML, CSS & JavaScript, creating modern, responsive websites.<br><br>
+         🛠️ I work with PHP & MySQL for dynamic applications and Adobe Photoshop for UI/UX design.<br>
+         📊 Experienced in data analysis using Python, NumPy, pandas & Matplotlib.<br>
+         🐧 I also work with <strong>Kali Linux</strong>, leveraging a fast, customizable dev environment.<br>
+         ✨ Passionate about building clean, functional, and engaging digital experiences.
+      </p>
+    </div>
+  </section>
+
+  <section class="container" id="skills">
+    <h2 class="section-title">💻 Skills</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4"><div class="skill-card">🌐 Front-End 🌐<br> HTML5 📝 <br>   CSS3 🎨 <br>  JavaScript ⚙️</div></div>
+      <div class="col-md-4 mb-4"><div class="skill-card">🛠️ Back-End  🛠️ <br> PHP 🧩 <br>  MySQL 🗄️</div></div>
+      <div class="col-md-4 mb-4"><div class="skill-card">🎨 Design    🎨 <br> Adobe Photoshop 🖌️</div></div>
+      <div class="col-md-4 mb-4"><div class="skill-card">🧰 Tools     🧰 <br> Git 🔗 <br> VS Code 💻 <br> XAMPP/WAMP 🧪</div></div>
+      <div class="col-md-4 mb-4"><div class="skill-card">💻 Operating Systems💻<br> Kali Linux 🐉 <br> Ubuntu 🐧 <br> Windows 🪟</div></div>
+      <div class="col-md-4 mb-4"><div class="skill-card">📊 Data Analysis Using Python 🐍 <br> NumPy 📐 <br> pandas 🐼 <br> Matplotlib 📈</div></div>
+    </div>
+  </section>
+
+  <section class="container" id="projects">
+    <h2 class="section-title">📂 Projects</h2><br>
+    <div class="project-card">
+      <h4><a href="">📷 Photo Studio Management System</a></h4>
+      <p>The Photo Studio Website project is designed to offer a comprehensive online platform for photography services. 
+        <br>It aims to streamline the process of booking photo sessions, viewing portfolios, and purchasing prints.
+    </p>
+    </div>
+    <br>
+    <div class="project-card">
+      <h4><a href="">💇‍♂️ Men Salon Management System</a></h4>
+      <p>The proposed system will help salon administrators keep track of customer bookings and maintain customer records. 
+        <br>They can view the requests made by customers and generate reports. 
+        <br>Administrators will also have the ability to approve or reject orders instantly, making the process smooth and efficient.
+    </p>
+    </div>
+  </section>
+
+  <section class="container" id="education">
+    <h2 class="section-title">🎓 Education</h2><br>
+    <div class="education-card">
+      <h4> 🎓 MCA - V.P. Institute of Management Studies & Research / India, Sangli</h4>
+      <p>Shivaji University | Pursuing | 2023–2025</p>
+    </div>
+    <br>
+    <div class="education-card">
+      <h4> 🎓 BCA - Ganpatrao Arwade College Of Commerce / India, Sangli </h4>
+      <p>Shivaji University | Percentage: 79% | 2019–2022</p>
+    </div>
+  </section>
+
+  <section class="container" id="social">
+    <h2 class="section-title">📱 Connect With Me</h2>
+    <div class="social-icons">
+      <a href="https://github.com/PrathmeshMane1315" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/prathmesh-mane-a32a87324" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/prathmeshmane_15/profilecard/?igsh=ZHRpNThybnNyMzZj" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/1JJ1zasRcZ/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="mailto:prathmeshmane1513@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Prathmesh Subhash Mane | All rights reserved
+  </footer>
+
+  <!-- ✅ Required JS for Navbar Collapse -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
